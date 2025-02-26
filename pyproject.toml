@@ -1,0 +1,18 @@
+[project]
+name = "tmp"
+version = "0.1.0"
+description = "Calendar reminder application"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0",
+    "pytest-mock>=3.10.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["test_*.py"]
+python_files = "test_*.py"
+python_functions = "test_*"
