@@ -56,8 +56,8 @@ def get_calendar_events() -> List[Tuple[datetime.datetime, str]]:
                 continue
 
             # インデントされた行には時間情報がある
-            # 例: "10:00 - 14:00"
-            time_pattern = r"(\d{1,2}:\d{2})\s*-\s*\d{1,2}:\d{2}"
+            # 例: "10:00 - 14:00" または "23:09 - ..."
+            time_pattern = r"(\d{1,2}:\d{2})\s*-\s*((\d{1,2}:\d{2})|\.\.\.)"
             match = re.search(time_pattern, line)
 
             if match and current_title:

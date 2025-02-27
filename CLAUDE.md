@@ -2,11 +2,12 @@
 
 ## Commands
 - Run script: `python cal.py`
-- Install dependencies: `pip install -r requirements.txt` (when created)
-- Run tests: `pytest test_*.py`
-- Run single test: `pytest test_file.py::test_function_name -v`
+- Install dependencies: `uv add -r requirements.txt` (when created)
+- Run tests: `uv run pytest test_*.py`
+- Run single test: `uv run pytest test_file.py::test_function_name -v`
 - Type check: `mypy *.py`
-- Lint: `flake8 *.py` or `ruff check *.py`
+- Lint: `uv run ruff check *.py`
+- Format: `uv run ruff format *.py`
 
 ## Code Style
 - **Imports**: Standard library first, then third-party, then local modules (grouped by blank lines)
