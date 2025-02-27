@@ -22,23 +22,14 @@ screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 pygame.display.set_caption("全画面アプリケーション")
 
 # フォントの設定
-japanese_fonts = ["Yu Gothic", "MS Gothic", "Noto Sans CJK JP", "Hiragino Sans"]
-font = None
-
-# 利用可能な日本語フォントを探す
-for font_name in japanese_fonts:
-    if font_name in pygame.font.get_fonts():
-        font = pygame.font.SysFont(font_name, 36)
-        break
-
-if font is None:
-    font = pygame.font.SysFont(None, 36)  # フォールバック：デフォルトフォント
+font_path = "NotoSansJP-VariableFont_wght.ttf"  # フォントファイルのパス
+font_size = 36
+font = pygame.font.Font(font_path, font_size)
 
 # タイトルを取得（コマンドライン引数から）
 title = "予定の時間です"  # デフォルトメッセージ
 if len(sys.argv) > 1:
     title = sys.argv[1]
-print(f"表示するタイトル: {title}")
 
 # メインループ
 running = True
