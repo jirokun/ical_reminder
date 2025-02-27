@@ -150,6 +150,7 @@ def main() -> None:
 
     last_check_time: Optional[datetime.datetime] = None
     events: List[Tuple[datetime.datetime, str]] = []
+    displayed_events: List[Tuple[datetime.datetime, str]] = []
 
     while True:
         current_time = datetime.datetime.now()
@@ -177,17 +178,31 @@ def main() -> None:
         for event_time, event_title in list(events):  # 反復のためにリストのコピーを使用
             time_diff = (event_time - current_time).total_seconds()
 
-            # イベントが今後1分以内に開始する場合
-            if 0 <= time_diff <= 60:
+            # イベントが今後1分以内に開始する場合、かつ既に表示されていない場合
+            if (
+                0 <= time_diff <= 60
+                and (event_time, event_title) not in displayed_events
+            ):
                 print(
                     f"{event_time.strftime('%H:%M')}に開始するイベント: {event_title}"
                 )
                 display_fullscreen_reminder(event_title)
 
+                # 表示済みリストに追加
+                displayed_events.append((event_time, event_title))
+
                 # 複数のリマインダーを表示しないようにリストからこのイベントを削除
                 events = [
                     e for e in events if e[0] != event_time or e[1] != event_title
                 ]
+
+        # 古い表示済みイベントを定期的にクリア（24時間経過したもの）
+        if displayed_events:
+            displayed_events = [
+                e
+                for e in displayed_events
+                if (current_time - e[0]).total_seconds() < 86400  # 24時間 = 86400秒
+            ]
 
         # 10秒待ってから再度チェック
         time.sleep(10)
