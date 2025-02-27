@@ -2,11 +2,12 @@
 import pytest
 from unittest.mock import patch, Mock
 import datetime
+from typing import List, Tuple
 from cal import get_calendar_events
 
 
 @patch('cal.subprocess.run')
-def test_get_calendar_events_success(mock_run):
+def test_get_calendar_events_success(mock_run: Mock) -> None:
     # Mock subprocess.run to return successful output with actual format
     mock_process = Mock()
     mock_process.returncode = 0
@@ -45,7 +46,7 @@ def test_get_calendar_events_success(mock_run):
 
 
 @patch('cal.subprocess.run')
-def test_get_calendar_events_empty(mock_run):
+def test_get_calendar_events_empty(mock_run: Mock) -> None:
     # Mock subprocess.run to return empty output
     mock_process = Mock()
     mock_process.returncode = 0
@@ -59,7 +60,7 @@ def test_get_calendar_events_empty(mock_run):
 
 
 @patch('cal.subprocess.run')
-def test_get_calendar_events_error(mock_run):
+def test_get_calendar_events_error(mock_run: Mock) -> None:
     # Mock subprocess.run to return error
     mock_process = Mock()
     mock_process.returncode = 1
@@ -73,7 +74,7 @@ def test_get_calendar_events_error(mock_run):
 
 
 @patch('cal.subprocess.run')
-def test_get_calendar_events_past_events(mock_run):
+def test_get_calendar_events_past_events(mock_run: Mock) -> None:
     # Mock subprocess.run to return past events
     mock_process = Mock()
     mock_process.returncode = 0

@@ -19,14 +19,15 @@ import datetime
 import re
 import os
 import sys
+from typing import List, Tuple, Optional
 
 
-def get_calendar_events():
+def get_calendar_events() -> List[Tuple[datetime.datetime, str]]:
     """
     icalBuddyを使用してカレンダーイベントを取得します。
 
     戻り値:
-        list: (event_time, event_title)のタプルを含むリスト
+        List[Tuple[datetime.datetime, str]]: (event_time, event_title)のタプルを含むリスト
     """
     # icalBuddyを実行して今日のイベントを取得
     cmd = ["icalBuddy", "eventsToday"]
@@ -109,7 +110,7 @@ def get_calendar_events():
         return []
 
 
-def display_fullscreen_reminder(event_title):
+def display_fullscreen_reminder(event_title: str) -> None:
     """
     イベントの全画面リマインダーを表示します。
 
@@ -142,13 +143,13 @@ def display_fullscreen_reminder(event_title):
         print("キーボード割り込みによりリマインダーを終了しました")
 
 
-def main():
+def main() -> None:
     """イベントを継続的にチェックするメイン関数。"""
     print("カレンダーリマインダースクリプトを開始しました。")
     print("終了するには Ctrl+C を押してください。")
 
-    last_check_time = None
-    events = []
+    last_check_time: Optional[datetime.datetime] = None
+    events: List[Tuple[datetime.datetime, str]] = []
 
     while True:
         current_time = datetime.datetime.now()
