@@ -7,7 +7,6 @@ icalBuddyを使用してカレンダーイベントを取得し、イベント�
 必要条件:
 - icalBuddyがインストールされているmacOS (brew install ical-buddy)
 - Python 3.6+
-- Tkinter (ほとんどのPythonインストールに含まれています)
 
 使用方法:
     python calendar_reminder.py
